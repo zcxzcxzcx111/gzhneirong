@@ -378,13 +378,13 @@ function injectSelectedCTA() {
 }
 
 function copyArticle() {
-    const text = document.getElementById('wechat-editor');
-    if (!text) {
-        showToast('⚠️ 推文内容为空！');
+    const textarea = document.getElementById('wechat-editor');
+    if (!textarea || !textarea.value.trim()) {
+        showToast('⚠️ 推文内容为空，请先生成或输入内容！');
         return;
     }
-    navigator.clipboard.writeText(text);
-    showToast('✔ 完整微信推文文本及卡片代码已复制到剪贴板！');
+    navigator.clipboard.writeText(textarea.value);
+    showToast('✔ 完整微信推文文本及卡片代码已成功复制到剪贴板！');
 }
 
 function showToast(message) {
