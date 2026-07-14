@@ -3,34 +3,35 @@
    Premium Dark Mode Design System & Glassmorphism UI
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
 
 :root {
-    --bg-dark: #07090e;
-    --bg-card: #111622;
-    --bg-card-hover: #171d2d;
-    --bg-glass: rgba(17, 22, 34, 0.75);
+    --bg-dark: #090a0f;
+    --bg-card: #12141c;
+    --bg-card-hover: #181b26;
+    --bg-glass: rgba(18, 20, 28, 0.85);
     --bg-glass-border: rgba(255, 255, 255, 0.08);
+    --bg-glass-highlight: rgba(255, 255, 255, 0.14);
     
-    --primary: #3b82f6;
-    --primary-glow: rgba(59, 130, 246, 0.4);
-    --primary-dark: #2563eb;
+    --primary: #2563eb;
+    --primary-glow: rgba(37, 99, 235, 0.35);
+    --primary-dark: #1d4ed8;
     
     --accent-emerald: #10b981;
-    --accent-emerald-glow: rgba(16, 185, 129, 0.35);
+    --accent-emerald-glow: rgba(16, 185, 129, 0.3);
     
     --accent-gold: #f59e0b;
-    --accent-gold-glow: rgba(245, 158, 11, 0.35);
+    --accent-gold-glow: rgba(245, 158, 11, 0.3);
     
     --accent-purple: #8b5cf6;
-    --accent-purple-glow: rgba(139, 92, 246, 0.4);
+    --accent-purple-glow: rgba(139, 92, 246, 0.3);
     
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
     --text-dim: #64748b;
     
-    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     
     --radius-sm: 8px;
     --radius-md: 14px;
@@ -51,9 +52,8 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     background-image: 
-        radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.12) 0%, transparent 45%),
-        radial-gradient(circle at 85% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 45%),
-        radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+        radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 10% 90%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
     background-attachment: fixed;
 }
 
@@ -219,8 +219,11 @@ body {
     border: 1px solid var(--bg-glass-border);
     border-radius: var(--radius-lg);
     padding: 22px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(10px);
+    box-shadow: 
+        inset 0 1px 0 0 var(--bg-glass-highlight),
+        0 16px 36px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .phone-panel {
@@ -248,13 +251,14 @@ body {
 
 /* Left Panel: Material & Matrix Selector */
 .step-label {
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     color: var(--primary);
     margin-bottom: 8px;
     display: block;
+    font-family: 'JetBrains Mono', monospace;
 }
 
 .matrix-grid {
@@ -265,43 +269,53 @@ body {
 }
 
 .matrix-btn {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--bg-glass-border);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: var(--radius-md);
     padding: 12px;
     text-align: left;
     cursor: pointer;
     transition: var(--transition-fast);
+    position: relative;
+    overflow: hidden;
 }
 
 .matrix-btn:hover {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
 }
 
 .matrix-btn.active {
-    background: rgba(59, 130, 246, 0.15);
-    border-color: var(--primary);
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.25);
+    background: rgba(37, 99, 235, 0.14);
+    border-color: rgba(37, 99, 235, 0.6);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 4px 15px rgba(37, 99, 235, 0.2);
 }
 
 .matrix-btn.active.matrix-tool {
-    background: rgba(16, 185, 129, 0.15);
-    border-color: var(--accent-emerald);
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+    background: rgba(16, 185, 129, 0.12);
+    border-color: rgba(16, 185, 129, 0.6);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 4px 15px rgba(16, 185, 129, 0.2);
 }
 
 .matrix-btn.active.matrix-whitepaper {
-    background: rgba(245, 158, 11, 0.15);
-    border-color: var(--accent-gold);
-    box-shadow: 0 0 15px rgba(245, 158, 11, 0.25);
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.6);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 4px 15px rgba(245, 158, 11, 0.2);
 }
 
 .matrix-btn.active.matrix-hot {
-    background: rgba(139, 92, 246, 0.15);
-    border-color: var(--accent-purple);
-    box-shadow: 0 0 15px rgba(139, 92, 246, 0.25);
+    background: rgba(139, 92, 246, 0.12);
+    border-color: rgba(139, 92, 246, 0.6);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 4px 15px rgba(139, 92, 246, 0.2);
 }
 
 .matrix-icon {
@@ -398,11 +412,17 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
 }
 
 .btn-secondary {
@@ -419,6 +439,10 @@ body {
 
 .btn-secondary:hover {
     background: rgba(255, 255, 255, 0.12);
+}
+
+.btn-secondary:active {
+    transform: scale(0.98);
 }
 
 /* Center Panel: Title Workshop & Article Editor */
@@ -452,8 +476,9 @@ body {
 }
 
 .title-card {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--bg-glass-border);
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-left: 3px solid transparent;
     border-radius: var(--radius-sm);
     padding: 12px 14px;
     display: flex;
@@ -465,13 +490,21 @@ body {
 }
 
 .title-card:hover {
-    background: rgba(59, 130, 246, 0.12);
-    border-color: var(--primary);
+    background: rgba(37, 99, 235, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+    border-left-color: rgba(37, 99, 235, 0.6);
+    transform: translateX(2px);
+}
+
+.title-card:active {
+    transform: scale(0.99);
 }
 
 .title-card.selected {
-    background: rgba(59, 130, 246, 0.18);
-    border-left: 4px solid var(--primary);
+    background: rgba(37, 99, 235, 0.16);
+    border-color: rgba(37, 99, 235, 0.4);
+    border-left: 3px solid var(--primary);
+    box-shadow: -4px 0 16px rgba(37, 99, 235, 0.4);
 }
 
 .title-tag {
@@ -502,6 +535,28 @@ body {
     color: var(--accent-emerald);
     font-weight: 700;
     flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* AI Streaming Shimmer Animation */
+@keyframes ai-shimmer {
+    0% {
+        box-shadow: 0 0 0 1px var(--primary), inset 0 0 20px rgba(37, 99, 235, 0.15);
+        border-color: var(--primary);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(16, 185, 129, 0.6), inset 0 0 30px rgba(16, 185, 129, 0.25);
+        border-color: var(--accent-emerald);
+    }
+    100% {
+        box-shadow: 0 0 0 1px var(--primary), inset 0 0 20px rgba(37, 99, 235, 0.15);
+        border-color: var(--primary);
+    }
+}
+
+.ai-streaming-glow {
+    animation: ai-shimmer 1.8s infinite ease-in-out !important;
+    border-color: var(--primary) !important;
 }
 
 .editor-toolbar {
@@ -578,16 +633,41 @@ body {
 .iphone-frame {
     width: 340px;
     height: 680px;
-    background: #18181b;
+    background: linear-gradient(145deg, #2d2d32, #161618);
     border-radius: 50px;
     padding: 12px;
     box-shadow: 
         0 0 0 2px #3f3f46,
         0 25px 60px rgba(0, 0, 0, 0.8),
-        inset 0 0 15px rgba(0,0,0,0.9);
+        inset 0 0 16px rgba(0,0,0,0.9),
+        inset 0 1px 1px rgba(255, 255, 255, 0.25);
     position: relative;
     display: flex;
     flex-direction: column;
+}
+
+/* Hardware Side Buttons (Volume & Power) */
+.iphone-frame::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 130px;
+    width: 3px;
+    height: 48px;
+    background: #4a4a52;
+    border-radius: 3px 0 0 3px;
+    box-shadow: 0 65px 0 #4a4a52;
+}
+
+.iphone-frame::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 160px;
+    width: 3px;
+    height: 64px;
+    background: #4a4a52;
+    border-radius: 0 3px 3px 0;
 }
 
 .iphone-screen {
@@ -597,10 +677,11 @@ body {
     border-radius: 40px;
     overflow-y: auto;
     overflow-x: hidden;
-    color: #333;
+    color: #1a1a1a;
     display: flex;
     flex-direction: column;
     position: relative;
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.35);
 }
 
 /* iOS Status Bar & Dynamic Island inside the top of the screen */

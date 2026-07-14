@@ -112,7 +112,13 @@ function runAISteps() {
     const ctaChoice = document.getElementById('cta-type-select').value;
     const generatedArticle = generateGoldenArticle(titles[0].text, rawText, ctaChoice);
     
-    document.getElementById('wechat-editor').value = generatedArticle;
+    const editor = document.getElementById('wechat-editor');
+    editor.value = generatedArticle;
+    editor.classList.add('ai-streaming-glow');
+    setTimeout(() => {
+        editor.classList.remove('ai-streaming-glow');
+    }, 1800);
+
     updateWeChatPreview();
 }
 
@@ -138,6 +144,11 @@ function renderTitleOptions(titles) {
             document.querySelectorAll('.title-card').forEach(c => c.classList.remove('selected'));
             div.classList.add('selected');
             selectTitleOption(item.text, index);
+            const ed = document.getElementById('wechat-editor');
+            if (ed) {
+                ed.classList.add('ai-streaming-glow');
+                setTimeout(() => ed.classList.remove('ai-streaming-glow'), 1200);
+            }
         };
         container.appendChild(div);
     });
@@ -260,53 +271,69 @@ function updateWeChatPreview() {
 
     // Inject CTA Widgets with clean toast actions for simulation
     html = html.replace(/\[\[CTA_WIDGET_ACCA\]\]/g, `
-        <div class="wechat-cta-card" style="background:linear-gradient(135deg, #064e3b, #022c22); border:1px solid #10b981;">
-            <div class="wechat-cta-header">
-                <span class="wechat-cta-badge" style="background:#10b981; color:#fff;">ACCA官方认证卡片</span>
-                <span class="wechat-cta-title">⚡ 免考9门科目在线实时评估卡</span>
+        <div class="wechat-cta-card" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:12px; padding:16px; margin:24px 0; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+            <div class="wechat-cta-header" style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid #f1f5f9; padding-bottom:8px;">
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <i class="fa-solid fa-square-check" style="color:#07c160; font-size:15px;"></i>
+                    <span style="font-size:13px; font-weight:700; color:#0f172a;">高顿 ACCA 小程序评估工具</span>
+                </div>
+                <span style="background:rgba(7,193,96,0.12); color:#07c160; font-size:10px; font-weight:700; padding:2px 8px; border-radius:10px;">官方认证卡</span>
             </div>
-            <p class="wechat-cta-desc">选择你的毕业大学和就读专业，系统3秒测算你最高能直接免考 F1-F9 中几门科目，省去万元报考费！</p>
-            <a onclick="showToast('📱 [真机模拟] 读者点击后将自动调起高顿微信小程序【资格一键自测工具】')" class="wechat-cta-btn" style="background:linear-gradient(90deg, #10b981, #059669); color:#fff; text-align:center;">
-                👉 点击立刻测算免考资格与科目 <i class="fa-solid fa-arrow-right"></i>
+            <div style="font-size:13.5px; font-weight:700; color:#0f172a; margin-bottom:6px;">⚡ 免考9门科目在线实时测算资格</div>
+            <p style="font-size:12px; color:#64748b; line-height:1.5; margin-bottom:14px;">选择你的毕业院校和就读专业，系统3秒自动测算你最高可直接免考 F1-F9 几门科目，省去近万元官方报考费！</p>
+            <a onclick="showToast('📱 [真机生态] 读者点击卡片后，微信底层自动拉起高顿【免考资格一键自测工具】官方小程序')" style="display:flex; align-items:center; justify-content:center; gap:6px; background:#07c160; color:#fff; font-size:13px; font-weight:700; padding:10px; border-radius:8px; cursor:pointer; text-decoration:none; box-shadow:0 4px 12px rgba(7,193,96,0.25);">
+                👉 点击立即自测免考科目 <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
     `);
 
     html = html.replace(/\[\[CTA_WIDGET_CPA\]\]/g, `
-        <div class="wechat-cta-card" style="background:linear-gradient(135deg, #1e3a8a, #0f172a); border:1px solid #3b82f6;">
-            <div class="wechat-cta-header">
-                <span class="wechat-cta-badge" style="background:#3b82f6; color:#fff;">全国CPA报名卡片</span>
-                <span class="wechat-cta-title">🎯 2026注册会计师资格自测入口</span>
+        <div class="wechat-cta-card" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:12px; padding:16px; margin:24px 0; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+            <div class="wechat-cta-header" style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid #f1f5f9; padding-bottom:8px;">
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <i class="fa-solid fa-square-check" style="color:#2563eb; font-size:15px;"></i>
+                    <span style="font-size:13px; font-weight:700; color:#0f172a;">全国 CPA 报考验资系统</span>
+                </div>
+                <span style="background:rgba(37,99,235,0.12); color:#2563eb; font-size:10px; font-weight:700; padding:2px 8px; border-radius:10px;">报名组合诊断</span>
             </div>
-            <p class="wechat-cta-desc">应届大四/跨专业/在职人能否直接报考今年CPA？测算报考组合与四大/上市券商薪资红利。</p>
-            <a onclick="showToast('📱 [真机模拟] 读者点击后将进入高顿【CPA极速验资与岗位规划工具】')" class="wechat-cta-btn" style="background:linear-gradient(90deg, #3b82f6, #2563eb); color:#fff; text-align:center;">
-                👉 极速3秒验资与报考建议查询 <i class="fa-solid fa-check"></i>
+            <div style="font-size:13.5px; font-weight:700; color:#0f172a; margin-bottom:6px;">🎯 2026 注册会计师资格自测通道</div>
+            <p style="font-size:12px; color:#64748b; line-height:1.5; margin-bottom:14px;">应届大四/跨专业/在职人能否直接报考今年 CPA？快速匹配黄金报考科目组合及四大/上市券商薪资阶梯。</p>
+            <a onclick="showToast('📱 [真机生态] 读者点击卡片后，系统自动调起高顿【CPA报考验资与职业规划指南】')" style="display:flex; align-items:center; justify-content:center; gap:6px; background:#2563eb; color:#fff; font-size:13px; font-weight:700; padding:10px; border-radius:8px; cursor:pointer; text-decoration:none; box-shadow:0 4px 12px rgba(37,99,235,0.25);">
+                👉 极速3秒验资与建议查询 <i class="fa-solid fa-check"></i>
             </a>
         </div>
     `);
 
     html = html.replace(/\[\[CTA_WIDGET_WHITEPAPER\]\]/g, `
-        <div class="wechat-cta-card" style="background:linear-gradient(135deg, #451a03, #1c1917); border:1px solid #f59e0b;">
-            <div class="wechat-cta-header">
-                <span class="wechat-cta-badge" style="background:#f59e0b; color:#000;">高顿研究院重磅白皮书</span>
-                <span class="wechat-cta-title">🎁 《2026名企招聘红利与证书地图》</span>
+        <div class="wechat-cta-card" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:12px; padding:16px; margin:24px 0; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+            <div class="wechat-cta-header" style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid #f1f5f9; padding-bottom:8px;">
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <i class="fa-solid fa-file-pdf" style="color:#d97706; font-size:15px;"></i>
+                    <span style="font-size:13px; font-weight:700; color:#0f172a;">高顿研究院重磅资料</span>
+                </div>
+                <span style="background:rgba(245,158,11,0.15); color:#d97706; font-size:10px; font-weight:700; padding:2px 8px; border-radius:10px;">超清完整版PDF</span>
             </div>
-            <p class="wechat-cta-desc">长达84页超清大报告，独家收录普华永道、德勤、中金薪酬分层及各大顶尖专硕考研真题。</p>
-            <a onclick="showToast('📱 [真机模拟] 读者点击或长按扫码后，将自动添加企微顾问学姐秒发84页PDF白皮书')" class="wechat-cta-btn" style="background:linear-gradient(90deg, #f59e0b, #d97706); color:#000; text-align:center; font-weight:800;">
-                📥 扫码或回复关键词【财会红利】限时免费领取 <i class="fa-solid fa-download"></i>
+            <div style="font-size:13.5px; font-weight:700; color:#0f172a; margin-bottom:6px;">🎁 《2026 名企招聘红利与证书地图》</div>
+            <p style="font-size:12px; color:#64748b; line-height:1.5; margin-bottom:14px;">长达84页超清大报告，独家收录普华永道、德勤、中金薪酬分层及各大顶尖高校专硕考研内部真题汇编。</p>
+            <a onclick="showToast('📱 [真机生态] 读者点击或扫码后，系统自动分配专属企微顾问学姐秒发84页PDF与考纲资料')" style="display:flex; align-items:center; justify-content:center; gap:6px; background:#d97706; color:#fff; font-size:13px; font-weight:700; padding:10px; border-radius:8px; cursor:pointer; text-decoration:none; box-shadow:0 4px 12px rgba(217,119,6,0.25);">
+                📥 长按扫码一键限时免费领取 <i class="fa-solid fa-download"></i>
             </a>
         </div>
     `);
 
     html = html.replace(/\[\[CTA_WIDGET_COMMUNITY\]\]/g, `
-        <div class="wechat-cta-card" style="background:linear-gradient(135deg, #3b0764, #1e1b4b); border:1px solid #8b5cf6;">
-            <div class="wechat-cta-header">
-                <span class="wechat-cta-badge" style="background:#8b5cf6; color:#fff;">陪伴备考进群</span>
-                <span class="wechat-cta-title">💬 加入2026名师押题冲刺答疑群</span>
+        <div class="wechat-cta-card" style="background:#ffffff; border:1px solid #cbd5e1; border-radius:12px; padding:16px; margin:24px 0; box-shadow:0 6px 18px rgba(0,0,0,0.06);">
+            <div class="wechat-cta-header" style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid #f1f5f9; padding-bottom:8px;">
+                <div style="display:flex; align-items:center; gap:6px;">
+                    <i class="fa-solid fa-user-group" style="color:#7c3aed; font-size:15px;"></i>
+                    <span style="font-size:13px; font-weight:700; color:#0f172a;">全国财会备考社群</span>
+                </div>
+                <span style="background:rgba(139,92,246,0.15); color:#7c3aed; font-size:10px; font-weight:700; padding:2px 8px; border-radius:10px;">名师在线答疑</span>
             </div>
-            <p class="wechat-cta-desc">与上千名全国优秀财会、考研学霸同步打卡，每周三领取高频考点压题大礼包！</p>
-            <a onclick="showToast('📱 [真机模拟] 读者点击后将弹出专属备考冲刺交流群微信二维码')" class="wechat-cta-btn" style="background:linear-gradient(90deg, #8b5cf6, #6d28d9); color:#fff; text-align:center;">
-                🤝 点击长按扫码进群领资料 <i class="fa-solid fa-users"></i>
+            <div style="font-size:13.5px; font-weight:700; color:#0f172a; margin-bottom:6px;">💬 加入 2026 核心押题与真题交流群</div>
+            <p style="font-size:12px; color:#64748b; line-height:1.5; margin-bottom:14px;">与上千名全国考研学子及四大 CPA 考友同步自习打卡，每周三限时领取名师高频密卷汇总大礼包！</p>
+            <a onclick="showToast('📱 [真机生态] 读者点击后调起进群名片，长按识别二维码即可加入千人学习群')" style="display:flex; align-items:center; justify-content:center; gap:6px; background:#7c3aed; color:#fff; font-size:13px; font-weight:700; padding:10px; border-radius:8px; cursor:pointer; text-decoration:none; box-shadow:0 4px 12px rgba(124,58,237,0.25);">
+                🤝 点击长按扫码立刻进群 <i class="fa-solid fa-users"></i>
             </a>
         </div>
     `);
