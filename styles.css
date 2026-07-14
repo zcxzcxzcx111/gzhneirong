@@ -1,0 +1,829 @@
+/* ==========================================================================
+   高顿教育 (Gaodun Education) - 微信公众号营销排版与真机模拟工作台
+   Premium Dark Mode Design System & Glassmorphism UI
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+
+:root {
+    --bg-dark: #07090e;
+    --bg-card: #111622;
+    --bg-card-hover: #171d2d;
+    --bg-glass: rgba(17, 22, 34, 0.75);
+    --bg-glass-border: rgba(255, 255, 255, 0.08);
+    
+    --primary: #3b82f6;
+    --primary-glow: rgba(59, 130, 246, 0.4);
+    --primary-dark: #2563eb;
+    
+    --accent-emerald: #10b981;
+    --accent-emerald-glow: rgba(16, 185, 129, 0.35);
+    
+    --accent-gold: #f59e0b;
+    --accent-gold-glow: rgba(245, 158, 11, 0.35);
+    
+    --accent-purple: #8b5cf6;
+    --accent-purple-glow: rgba(139, 92, 246, 0.4);
+    
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+    
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+    background-attachment: fixed;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.2);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--bg-glass-border);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-dim);
+}
+
+/* ================= Top Navigation Bar ================= */
+.app-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    height: 72px;
+    background: rgba(11, 15, 23, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--bg-glass-border);
+}
+
+.brand-area {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo-badge {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 20px;
+    color: #fff;
+    box-shadow: 0 0 20px var(--primary-glow);
+    position: relative;
+}
+
+.logo-badge::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--primary), transparent, var(--accent-purple));
+    z-index: -1;
+    opacity: 0.6;
+}
+
+.brand-title h1 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: linear-gradient(90deg, #fff, #cbd5e1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.brand-title p {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.nav-tabs {
+    display: flex;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 6px;
+    border-radius: 14px;
+    border: 1px solid var(--bg-glass-border);
+}
+
+.nav-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary-dark), var(--accent-purple));
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35);
+}
+
+.nav-tab .badge-count {
+    background: var(--accent-gold);
+    color: #000;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 1px 6px;
+    border-radius: 10px;
+}
+
+.header-status {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-emerald);
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent-emerald);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-emerald);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.3); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+/* ================= Main Container & Studio Layout ================= */
+.main-container {
+    max-width: 1640px;
+    margin: 0 auto;
+    padding: 24px 28px;
+}
+
+.studio-grid {
+    display: grid;
+    grid-template-columns: 360px 1fr 410px;
+    gap: 22px;
+    align-items: stretch;
+}
+
+.panel {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-glass-border);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+.phone-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--bg-glass-border);
+}
+
+.panel-title span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Left Panel: Material & Matrix Selector */
+.step-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.matrix-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.matrix-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--bg-glass-border);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    text-align: left;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.matrix-btn:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.matrix-btn.active {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.25);
+}
+
+.matrix-btn.active.matrix-tool {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: var(--accent-emerald);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+}
+
+.matrix-btn.active.matrix-whitepaper {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.25);
+}
+
+.matrix-btn.active.matrix-hot {
+    background: rgba(139, 92, 246, 0.15);
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.25);
+}
+
+.matrix-icon {
+    font-size: 18px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.matrix-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 2px;
+}
+
+.matrix-desc {
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.3;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-textarea, .form-select, .form-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--bg-glass-border);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #fff;
+    transition: var(--transition-fast);
+    resize: vertical;
+}
+
+.form-textarea:focus, .form-select:focus, .form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 12px var(--primary-glow);
+}
+
+.form-select {
+    cursor: pointer;
+}
+
+.sample-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.sample-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--bg-glass-border);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 11px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.sample-pill:hover {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--primary), var(--accent-purple));
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 20px var(--primary-glow);
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+}
+
+.btn-secondary {
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 12.5px;
+    border: 1px solid var(--bg-glass-border);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Center Panel: Title Workshop & Article Editor */
+.titles-carousel {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--bg-glass-border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.titles-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.titles-header h4 {
+    font-size: 13.5px;
+    color: var(--accent-gold);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.title-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.title-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--bg-glass-border);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.title-card:hover {
+    background: rgba(59, 130, 246, 0.12);
+    border-color: var(--primary);
+}
+
+.title-card.selected {
+    background: rgba(59, 130, 246, 0.18);
+    border-left: 4px solid var(--primary);
+}
+
+.title-tag {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.tag-anxiety { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+.tag-authority { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+.tag-utility { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+.tag-trend { background: rgba(139, 92, 246, 0.2); color: #c084fc; }
+.tag-test { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+
+.title-text {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #fff;
+    flex: 1;
+    line-height: 1.4;
+}
+
+.title-score {
+    font-size: 11px;
+    color: var(--accent-emerald);
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.editor-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px 14px;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    border: 1px solid var(--bg-glass-border);
+    border-bottom: none;
+}
+
+.toolbar-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.toolbar-btn:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.toolbar-btn.cta-btn {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--accent-emerald);
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+.toolbar-btn.cta-btn:hover {
+    background: var(--accent-emerald);
+    color: #fff;
+}
+
+.editor-area {
+    width: 100%;
+    height: 480px;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid var(--bg-glass-border);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #e2e8f0;
+    resize: none;
+    font-family: 'Inter', monospace;
+}
+
+.editor-area:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* Right Panel: Interactive iPhone WeChat Simulator */
+.phone-mockup-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: 8px 0;
+}
+
+.iphone-frame {
+    width: 340px;
+    height: 680px;
+    background: #18181b;
+    border-radius: 50px;
+    padding: 12px;
+    box-shadow: 
+        0 0 0 2px #3f3f46,
+        0 25px 60px rgba(0, 0, 0, 0.8),
+        inset 0 0 15px rgba(0,0,0,0.9);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.iphone-screen {
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    border-radius: 40px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* iOS Status Bar & Dynamic Island inside the top of the screen */
+.ios-status-bar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 48px;
+    background: #ededed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 50;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.ios-time {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: -0.02em;
+    width: 50px;
+}
+
+.dynamic-island {
+    width: 106px;
+    height: 28px;
+    background: #000;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    transform: translateX(-50%);
+}
+
+.island-camera {
+    width: 11px;
+    height: 11px;
+    background: #0d0d0d;
+    border-radius: 50%;
+    border: 1.5px solid #1f1f1f;
+    box-shadow: inset 0 0 3px rgba(255,255,255,0.18);
+}
+
+.ios-icons {
+    display: flex;
+    align-items: center;
+    color: #000;
+    width: 50px;
+    justify-content: flex-end;
+}
+
+/* WeChat App Bar right below Status Bar */
+.wechat-bar {
+    position: sticky;
+    top: 48px;
+    background: #ededed;
+    padding: 8px 16px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #d4d4d8;
+    z-index: 40;
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+    flex-shrink: 0;
+}
+
+.wechat-article-content {
+    padding: 18px 16px 40px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #222;
+    background: #fff;
+}
+
+.wechat-title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #111;
+    margin-bottom: 12px;
+}
+
+.wechat-meta {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 12px;
+}
+
+.wechat-meta span.account-name {
+    color: #576b95;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.wechat-body p {
+    margin-bottom: 16px;
+    text-align: justify;
+}
+
+.wechat-body h3 {
+    font-size: 16.5px;
+    font-weight: 700;
+    color: #111;
+    margin: 22px 0 10px;
+    padding-left: 10px;
+    border-left: 4px solid var(--primary-dark);
+}
+
+.wechat-body blockquote {
+    background: #f8f9fa;
+    border-left: 4px solid #f59e0b;
+    padding: 12px 14px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: #555;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Embedded Interactive CTA Card inside WeChat preview */
+.wechat-cta-card {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border-radius: 12px;
+    padding: 16px;
+    margin: 24px 0;
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.wechat-cta-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.wechat-cta-badge {
+    background: #f59e0b;
+    color: #000;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.wechat-cta-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.wechat-cta-desc {
+    font-size: 12.5px;
+    color: #cbd5e1;
+    margin-bottom: 14px;
+    line-height: 1.5;
+}
+
+.wechat-cta-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background: linear-gradient(90deg, #3b82f6, #10b981);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+/* Toast Notifications */
+.toast-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.toast {
+    background: #1e293b;
+    color: #fff;
+    border-left: 4px solid var(--accent-emerald);
+    padding: 14px 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    font-size: 13.5px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(120%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 1400px) {
+    .studio-grid {
+        grid-template-columns: 340px 1fr;
+    }
+    .phone-mockup-wrapper {
+        grid-column: 1 / -1;
+        margin-top: 30px;
+    }
+}
